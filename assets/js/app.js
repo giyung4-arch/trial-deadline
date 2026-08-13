@@ -8,7 +8,9 @@ const parseDate = (value) => new Date(`${value}T12:00:00`);
 const isoDate = (date) => date.toISOString().slice(0, 10);
 const addMonths = (date, months) => { const copy = new Date(date); copy.setMonth(copy.getMonth() + months); return copy; };
 const addDays = (date, days) => { const copy = new Date(date); copy.setDate(copy.getDate() + days); return copy; };
-const formatDate = (date) => new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(date);
+// The site is English-first, so dates stay in an unambiguous English format
+// regardless of the visitor's browser language or regional settings.
+const formatDate = (date) => new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(date);
 
 function calculate(data) {
   const start = parseDate(data.start);
@@ -89,7 +91,7 @@ document.querySelectorAll('[data-tool]').forEach((toolForm) => {
     if (toolForm.dataset.tool === 'annual') {
       const monthlyYear = Number(data.monthly) * 12;
       const annual = Number(data.annual);
-      const formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency: data.currency, maximumFractionDigits: data.currency === 'KRW' ? 0 : 2 });
+      const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: data.currency, maximumFractionDigits: data.currency === 'KRW' ? 0 : 2 });
       const difference = monthlyYear - annual;
       outputTitle.textContent = difference > 0
         ? `Save ${formatter.format(difference)} per year`
