@@ -4,4 +4,8 @@
   <url><loc>https://YOUR-DOMAIN.example/features.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.example/about.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.example/privacy.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.example/tools.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.example/renewal-date-calculator.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.example/refund-deadline-calculator.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.example/annual-subscription-calculator.html</loc></url>
 </urlset>

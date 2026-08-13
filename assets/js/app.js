@@ -56,3 +56,50 @@ if (form) {
   $('#share-button').addEventListener('click', copyLink);
   restoreFromURL();
 }
+
+document.querySelectorAll('[data-tool]').forEach((toolForm) => {
+  const dateField = toolForm.elements.start;
+  if (dateField) dateField.value = todayISO();
+
+  toolForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(toolForm));
+    const output = toolForm.parentElement.querySelector('.result');
+    const outputTitle = output.querySelector('h3');
+    const outputText = output.querySelector('p:not(.eyebrow)');
+    const service = data.service?.trim() || 'This subscription';
+
+    if (toolForm.dataset.tool === 'renewal') {
+      const start = parseDate(data.start);
+      const amount = Number(data.amount);
+      const next = data.unit === 'months'
+        ? addMonths(start, amount)
+        : addDays(start, amount * (data.unit === 'weeks' ? 7 : 1));
+      outputTitle.textContent = formatDate(next);
+      outputText.textContent = `${service} is expected to renew on this date based on the billing interval you entered.`;
+    }
+
+    if (toolForm.dataset.tool === 'refund') {
+      const policyEnd = addDays(parseDate(data.start), Number(data.window));
+      const safeDate = addDays(policyEnd, -Number(data.buffer));
+      outputTitle.textContent = formatDate(safeDate);
+      outputText.textContent = `${service}'s stated window is expected to end on ${formatDate(policyEnd)}. Confirm the seller's policy before acting.`;
+    }
+
+    if (toolForm.dataset.tool === 'annual') {
+      const monthlyYear = Number(data.monthly) * 12;
+      const annual = Number(data.annual);
+      const formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency: data.currency, maximumFractionDigits: data.currency === 'KRW' ? 0 : 2 });
+      const difference = monthlyYear - annual;
+      outputTitle.textContent = difference > 0
+        ? `Save ${formatter.format(difference)} per year`
+        : difference < 0
+          ? `Monthly costs ${formatter.format(-difference)} less`
+          : 'The yearly cost is the same';
+      outputText.textContent = `${service}: monthly billing costs ${formatter.format(monthlyYear)} per year; the annual plan costs ${formatter.format(annual)}.`;
+    }
+
+    output.hidden = false;
+    output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+});
