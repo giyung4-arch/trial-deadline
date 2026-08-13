@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calculate a safe free trial cancellation date, add it to your calendar, and share the deadline. Free, private, and no sign-up required.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f7f8fc">
+    <link rel="canonical" href="https://YOUR-DOMAIN.example/">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebApplication","name":"Trial Deadline","url":"https://YOUR-DOMAIN.example/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"A private, no-sign-up calculator for free trial cancellation dates."}
+    </script>
+    <title>Free Trial Cancellation Date Calculator | Trial Deadline</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to calculator</a>
+    <header class="site-header"><a class="brand" href="index.html" aria-label="Trial Deadline home">Trial<span>Deadline</span></a><nav aria-label="Primary navigation"><a aria-current="page" href="index.html">Calculator</a><a href="features.html">Features</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></nav></header>
+    <main id="main">
+      <section class="hero">
+        <p class="eyebrow">FREE • NO SIGN-UP • PRIVATE</p>
+        <h1>Know when to cancel<br>before the trial bills you.</h1>
+        <p class="lead">Turn any free trial into a clear, calendar-ready cancellation deadline in under a minute.</p>
+      </section>
+      <section class="tool-card" aria-labelledby="calculator-title">
+        <div class="tool-heading"><div><p class="eyebrow">YOUR DEADLINE</p><h2 id="calculator-title">Free trial calculator</h2></div><p class="privacy-note">Everything stays in your browser.</p></div>
+        <form id="trial-form">
+          <div class="form-grid">
+            <label>Service name <input id="service" name="service" type="text" maxlength="80" placeholder="e.g. Streamly" autocomplete="off"></label>
+            <label>Trial starts <input id="start-date" name="start" type="date" required></label>
+            <label>Trial length <span class="field-pair"><input id="duration" name="duration" type="number" min="1" max="365" value="30" required><select id="unit" name="unit" aria-label="Trial length unit"><option value="days">days</option><option value="weeks">weeks</option><option value="months">months</option></select></span></label>
+            <label>Safety buffer <span class="field-pair"><input id="buffer" name="buffer" type="number" min="0" max="30" value="2" required><span class="suffix">days early</span></span></label>
+          </div>
+          <button class="button button-primary" type="submit">Calculate my deadline <span aria-hidden="true">→</span></button>
+        </form>
+        <section id="result" class="result" aria-live="polite" hidden>
+          <p class="eyebrow">CANCEL BY</p><h3 id="deadline-date"></h3><p id="deadline-message"></p>
+          <div class="result-actions"><button id="calendar-button" class="button button-primary" type="button">Add to calendar</button><button id="share-button" class="button button-secondary" type="button">Copy share link</button></div>
+          <p id="copy-status" class="status" role="status"></p>
+        </section>
+      </section>
+      <section class="content-section two-columns">
+        <div><p class="eyebrow">WHY THIS HELPS</p><h2>Trials are easy to start and easy to forget.</h2></div>
+        <div><p>A cancellation deadline is not always the same as a trial’s final day: payment processing, time zones, and busy schedules can get in the way. Trial Deadline subtracts a safety buffer so you can decide early, on your terms.</p><p>This is a planning tool, not a billing service. Always check the provider’s own terms and cancellation policy.</p></div>
+      </section>
+      <section class="content-section"><p class="eyebrow">HOW IT WORKS</p><h2>Three simple steps</h2><div class="steps"><article><span>01</span><h3>Enter the trial</h3><p>Add its start date, length, and the time you want to leave yourself.</p></article><article><span>02</span><h3>Get a safe date</h3><p>We calculate a suggested date before the trial is expected to end.</p></article><article><span>03</span><h3>Save or share it</h3><p>Download a standard calendar event or copy a link to the result.</p></article></div></section>
+      <section class="content-section faq"><p class="eyebrow">COMMON QUESTIONS</p><h2>Free trial deadline FAQ</h2><details><summary>Does this site cancel my subscription?</summary><p>No. This site only helps you plan a cancellation date. You must cancel directly with the service provider.</p></details><details><summary>Is my information sent anywhere?</summary><p>No. Calculations happen on your device. A shared result is encoded in the URL, not stored on our servers.</p></details><details><summary>Why should I use a safety buffer?</summary><p>Cancellation cutoffs and time zones vary. A buffer gives you time to decide and complete the provider’s cancellation steps.</p></details></section>
+    </main>
+    <footer class="site-footer"><a class="brand" href="index.html">Trial<span>Deadline</span></a><p>A simple tool for clearer subscription decisions.</p><div><a href="features.html">Features</a><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a></div><p>© <span id="year"></span> Trial Deadline. Not affiliated with any subscription provider.</p></footer>
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>
